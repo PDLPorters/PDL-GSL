@@ -1,6 +1,12 @@
 use strict;
 use warnings;
 
+{
+package PDL::GSL;
+package PDL::GSL::CDF;
+our $VERSION = '2.096';
+}
+
 pp_addpm({At=>'Top'},<<'EOD');
 
 use strict;
