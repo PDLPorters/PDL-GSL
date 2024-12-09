@@ -37,6 +37,36 @@ sub get_gsl_libs {
 # these will be used in the subdirs
 our ($GSL_includes, $GSL_libs) = get_gsl_libs();
 
+my $package_name = "PDL::GSL";
+(my $repo = $package_name) =~ s#::#-#g;
+$repo = "PDLPorters/$repo";
 WriteMakefile(
-  NAME => 'PDL::GSL',
+  NAME => $package_name,
+  VERSION => '2.096',
+  AUTHOR => 'PerlDL Developers <pdl-general@lists.sourceforge.net>',
+  CONFIGURE_REQUIRES => {
+    'ExtUtils::MakeMaker' => 0,
+    'PDL' => '2.094',
+  },
+  PREREQ_PM => {
+    'PDL' => '2.094',
+  },
+  META_MERGE => {
+    "meta-spec" => { version => 2 },
+    resources => {
+      homepage => 'http://pdl.perl.org/',
+      bugtracker  => {web=>"https://github.com/$repo/issues"},
+      repository  => {
+        url => "git://github.com/$repo.git",
+        type => 'git',
+        web => "https://github.com/$repo",
+      },
+      x_IRC => 'irc://irc.perl.org/#pdl',
+    },
+  },
 );
+
+sub MY::postamble {
+  my $oneliner = PDL::Core::Dev::_oneliner(qq{exit if \$ENV{DESTDIR}; use PDL::Doc; eval { PDL::Doc::add_module(shift); }});
+  qq|\ninstall :: pure_install\n\t$oneliner \$(NAME)\n|;
+}
