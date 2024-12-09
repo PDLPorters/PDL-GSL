@@ -13,4 +13,4 @@ $hash{OBJECT} .= ' FUNC$(OBJ_EXT)';
 
 undef &MY::postamble; # suppress warning
 *MY::postamble = sub { pdlpp_postamble(@pack); };
-WriteMakefile(%hash);
+WriteMakefile(%hash, NO_MYMETA=>1);

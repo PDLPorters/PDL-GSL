@@ -11,4 +11,4 @@ push @{$hash{LIBS}},$GSL_libs;
 
 undef &MY::postamble; # suppress warning
 *MY::postamble = sub { pdlpp_postamble(@pack); };
-WriteMakefile(%hash);
+WriteMakefile(%hash, NO_MYMETA=>1);

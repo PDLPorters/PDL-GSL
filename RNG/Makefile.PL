@@ -14,4 +14,4 @@ $hash{PM}{'Demo.pm'} = '$(INST_LIB)/PDL/Demos/GSL_RNG.pm';
 undef &MY::postamble; # suppress warning
 *MY::postamble = sub { pdlpp_postamble(@pack); };
 
-WriteMakefile(%hash);
+WriteMakefile(%hash, NO_MYMETA=>1);
