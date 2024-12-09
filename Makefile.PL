@@ -45,7 +45,7 @@ my $package_name = "PDL::GSL";
 $repo = "PDLPorters/$repo";
 WriteMakefile(
   NAME => $package_name,
-  VERSION_FROM => 'CDF/gsl_cdf.pd',
+  VERSION_FROM => 'GSL.pm',
   AUTHOR => 'PerlDL Developers <pdl-general@lists.sourceforge.net>',
   CONFIGURE_REQUIRES => {
     'ExtUtils::MakeMaker' => 0,

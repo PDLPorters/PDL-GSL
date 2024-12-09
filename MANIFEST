@@ -10,6 +10,7 @@ DIFF/t/gsl_diff.t
 Distr/distr.pd
 Distr/Makefile.PL
 Distr/t/stats_distr.t
+GSL.pm
 gslerr.h
 INTEG/FUNC.c
 INTEG/gsl_integ.pd
