@@ -19,8 +19,7 @@ if (!$version) {
   $new_enough= $major >= 2;
 }
 if (!$new_enough) {
-  write_dummy_make("Not building GSL modules: GSL version $version found, but need at least 2.0");
-  return;
+  die "GSL modules: GSL version $version found, but need at least 2.0";
 }
 
 # the real stuff happens in the subdirs
@@ -38,9 +37,6 @@ sub get_gsl_libs {
 # these will be used in the subdirs
 our ($GSL_includes, $GSL_libs) = get_gsl_libs();
 
-undef &MY::postamble; # suppress warning
-*MY::postamble = sub {};
 WriteMakefile(
   NAME => 'PDL::GSL',
-  NO_MYMETA => 1,
 );

@@ -4,13 +4,13 @@ use ExtUtils::MakeMaker;
 
 our ($GSL_includes, $GSL_libs);
 
-my @pack = (["distr.pd", qw(Distr PDL::Stats::Distr)]);
-my %hash = pdlpp_stdargs_int(@pack);
+my @pack = (["distr.pd", qw(Distr PDL::Stats::Distr), undef, 1]);
+my %hash = pdlpp_stdargs(@pack);
 
 $hash{INC} .= " $GSL_includes";
 push @{$hash{LIBS}},$GSL_libs;
 
 undef &MY::postamble; # suppress warning
-*MY::postamble = sub { pdlpp_postamble_int(@pack); };
+*MY::postamble = sub { pdlpp_postamble(@pack); };
 
 WriteMakefile(%hash);
