@@ -37,6 +37,9 @@ sub get_gsl_libs {
 # these will be used in the subdirs
 our ($GSL_includes, $GSL_libs) = get_gsl_libs();
 
+# create GENERATED subdir with *.pm files during 'make dist' (to make metacpan.org happy)
+my $preop = '$(PERLRUNINST) -MPDL::Core::Dev -e pdlpp_mkgen $(DISTVNAME)';
+
 my $package_name = "PDL::GSL";
 (my $repo = $package_name) =~ s#::#-#g;
 $repo = "PDLPorters/$repo";
@@ -51,6 +54,7 @@ WriteMakefile(
   PREREQ_PM => {
     'PDL' => '2.094',
   },
+  dist => { COMPRESS => 'gzip', SUFFIX => 'gz', PREOP => $preop },
   META_MERGE => {
     "meta-spec" => { version => 2 },
     resources => {
