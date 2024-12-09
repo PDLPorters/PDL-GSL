@@ -1,3 +1,6 @@
+2.099 2024-12-09
+- separate file for package declaration so PAUSE deigns to index
+
 2.098 2024-12-09
 - adjust package declaration so PAUSE deigns to index
 
