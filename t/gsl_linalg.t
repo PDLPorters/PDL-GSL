@@ -15,7 +15,7 @@ my $B = sequence(2,4); # column vectors, but must transpose for GSL
 
 LU_decomp(my $lu=$A->copy, my $p=null, my $signum=null);
 LU_solve($lu, $p, $B->transpose, my $x=null);
-$x = $x->inplace->transpose;
+$x = $x->transpose;
 is_pdl $A x $x, $B;
 is_pdl LU_det($lu, $signum), $lu->diagonal(0,1)->prodover * $signum;
 
@@ -38,7 +38,7 @@ is_pdl $lu, pdl '
 0.803921568627451 0.244515215852795 0.71427813163482 -0.264713375796178;
 0.274509803921569 0.476999292285916 0.949126848480345 0.363093705877982';
 LU_solve($lu, $p, $B->transpose, $x=null);
-$x = $x->inplace->transpose;
+$x = $x->transpose;
 is_pdl $A x $x, $B;
 is_pdl LU_det($lu, $signum), $lu->diagonal(0,1)->prodover * $signum;
 
